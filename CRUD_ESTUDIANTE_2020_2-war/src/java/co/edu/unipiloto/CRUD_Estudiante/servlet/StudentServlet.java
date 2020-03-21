@@ -38,7 +38,7 @@ public class StudentServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
-             String action = request.getParameter("action");
+        String action = request.getParameter("action");
         String studentIdStr = request.getParameter("studentId");
         int studentId=0;
         if(studentIdStr!=null && !studentIdStr.equals("")){
