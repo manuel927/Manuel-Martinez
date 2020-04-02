@@ -6,16 +6,20 @@
 package co.edu.unipiloto.CRUD_ESTUDIANTE.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -38,14 +42,22 @@ public class Estudiantes implements Serializable {
     @NotNull
     @Column(name = "STUDENTID")
     private Integer studentid;
-    @Size(max = 50)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
     @Column(name = "FIRSTNAME")
     private String firstname;
-    @Size(max = 50)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
     @Column(name = "LASTNAME")
     private String lastname;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "YEARLEVEL")
-    private Integer yearlevel;
+    private int yearlevel;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "estudiantes")
+    private Collection<CursoEstudiantes> cursoEstudiantesCollection;
 
     public Estudiantes() {
     }
@@ -54,15 +66,12 @@ public class Estudiantes implements Serializable {
         this.studentid = studentid;
     }
 
-    public Estudiantes(Integer studentid, String firstname, String lastname, Integer yearlevel) {
+    public Estudiantes(Integer studentid, String firstname, String lastname, int yearlevel) {
         this.studentid = studentid;
         this.firstname = firstname;
         this.lastname = lastname;
         this.yearlevel = yearlevel;
     }
-    
-    
-    
 
     public Integer getStudentid() {
         return studentid;
@@ -88,12 +97,21 @@ public class Estudiantes implements Serializable {
         this.lastname = lastname;
     }
 
-    public Integer getYearlevel() {
+    public int getYearlevel() {
         return yearlevel;
     }
 
-    public void setYearlevel(Integer yearlevel) {
+    public void setYearlevel(int yearlevel) {
         this.yearlevel = yearlevel;
+    }
+
+    @XmlTransient
+    public Collection<CursoEstudiantes> getCursoEstudiantesCollection() {
+        return cursoEstudiantesCollection;
+    }
+
+    public void setCursoEstudiantesCollection(Collection<CursoEstudiantes> cursoEstudiantesCollection) {
+        this.cursoEstudiantesCollection = cursoEstudiantesCollection;
     }
 
     @Override

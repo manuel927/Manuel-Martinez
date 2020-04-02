@@ -4,9 +4,17 @@
         <servlet-name>StudentServlet</servlet-name>
         <servlet-class>co.edu.unipiloto.CRUD_Estudiante.servlet.StudentServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CursoServlet</servlet-name>
+        <servlet-class>co.edu.unipiloto.CRUD_Estudiante.servlet.CursoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>StudentServlet</servlet-name>
         <url-pattern>/StudentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CursoServlet</servlet-name>
+        <url-pattern>/CursoServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
